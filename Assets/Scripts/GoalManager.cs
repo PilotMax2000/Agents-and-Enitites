@@ -8,10 +8,10 @@ namespace AgentsAndEntities
         [SerializeField] private float goalXRange;
     
         [Range(0, 100)]
-        [SerializeField] private float goalYRange;
+        [SerializeField] private float goalZRange;
         public UnitGoal GetNewGoal()
         {
-            return new UnitGoal(new Vector3(Random.Range(-goalXRange, goalXRange), Random.Range(-goalYRange, goalYRange), 0));
+            return new UnitGoal(new Vector3(Random.Range(-goalXRange, goalXRange), 0, Random.Range(-goalZRange, goalZRange)));
         }
     }
 }

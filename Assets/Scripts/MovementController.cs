@@ -22,5 +22,15 @@ namespace AgentsAndEntities
                 onGoalReached();
             });
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if(_unitGoal == null) 
+                return;
+            
+            Debug.DrawLine(transform.position, _unitGoal.GoalPosition, Color.cyan, 3);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(_unitGoal.GoalPosition + new Vector3(0, 0.75f, 0), .75f);
+        }
     }
 }
