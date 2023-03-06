@@ -37,13 +37,13 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_DD43FCA: 0
-    - _LineThickness: 0.961
+    - _LineThickness: 0.937
     - _QueueControl: 1
     - _QueueOffset: 0
     m_Colors:
     - _GridColor: {r: 0, g: 2.7385488, b: 3.031433, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 30, g: 30, b: 0, a: 0}
+    - _Tiling: {r: 20, g: 20, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8311323382733689347
 MonoBehaviour:
