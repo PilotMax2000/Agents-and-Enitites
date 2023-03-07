@@ -17,6 +17,7 @@ namespace AgentsAndEntities
         [SerializeField] private Transform spawnPoint;
         
         [SerializeField] private Transform UnitsParent;
+        public event Action OnUnitsCountChanged;
 
         public void Spawn1Unit() => SpawnUnits(1);
 
@@ -28,15 +29,20 @@ namespace AgentsAndEntities
         {
             foreach (Transform child in UnitsParent) 
                 Destroy(child.gameObject);
+            
+            OnUnitsCountChanged?.Invoke();
         }
+        
+        public int GetUnitsCount() => UnitsParent.transform.childCount;
 
         private void SpawnUnits(int unitsCount)
         {
             for (int i = 0; i < unitsCount; i++)
             {
                 var unit = Instantiate(unitPrefabToSpawn, spawnPoint.position + new Vector3(Random.Range(-spawnXOffset, spawnXOffset), 0, Random.Range(-spawnZOffset, spawnZOffset)), Quaternion.identity, UnitsParent);
-                unit.name = $"Unit {i}";
+                unit.name = $"Unit {UnitsParent.transform.childCount}";
             }
+            OnUnitsCountChanged?.Invoke();
         }
     }
 }
