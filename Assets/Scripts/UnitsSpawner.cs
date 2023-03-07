@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,19 +22,25 @@ namespace AgentsAndEntities
         public event Action OnUnitsCountChanged;
 
         public void Spawn1Unit() => SpawnUnits(1);
-
         public void Spawn10Units() => SpawnUnits(10);
-
         public void Spawn100Units() => SpawnUnits(100);
 
         public void ClearUnits()
         {
-            foreach (Transform child in UnitsParent) 
+            foreach (Transform child in UnitsParent)
+            {
                 Destroy(child.gameObject);
+            }
             
-            OnUnitsCountChanged?.Invoke();
+            StartCoroutine(MakeCallAfterFrame(OnUnitsCountChanged));
         }
-        
+
+        private IEnumerator MakeCallAfterFrame(Action OnOnUnitsCountChanged)
+        {
+            yield return new WaitForNextFrameUnit();
+            OnOnUnitsCountChanged?.Invoke();
+        }
+
         public int GetUnitsCount() => UnitsParent.transform.childCount;
 
         private void SpawnUnits(int unitsCount)

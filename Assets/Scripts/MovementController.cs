@@ -6,6 +6,8 @@ namespace AgentsAndEntities
 {
     public class MovementController: MonoBehaviour
     {
+        [Range(0, 10f)]
+        [SerializeField] private float speed = 1f;
         private UnitGoal _unitGoal;
 
         public void SetNewGoal(UnitGoal unitGoal, Action onGoalReached)
@@ -14,9 +16,20 @@ namespace AgentsAndEntities
             StartMovementTowardsGoal(onGoalReached);
         }
 
+        private void OnDestroy()
+        {
+            StopMovement();
+        }
+
+        private void StopMovement()
+        {
+            //Stop Tweening
+            transform.DOKill();
+        }
+
         private void StartMovementTowardsGoal(Action onGoalReached)
         {
-            transform.DOMove(_unitGoal.GoalPosition, 1f).OnComplete(() =>
+            transform.DOMove(_unitGoal.GoalPosition, speed).OnComplete(() =>
             {
                 _unitGoal.IsComplete = true;
                 onGoalReached();
@@ -28,7 +41,7 @@ namespace AgentsAndEntities
             if(_unitGoal == null) 
                 return;
             
-            Debug.DrawLine(transform.position, _unitGoal.GoalPosition, Color.cyan, 3);
+            Debug.DrawLine(transform.position, _unitGoal.GoalPosition, Color.green, 3);
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(_unitGoal.GoalPosition + new Vector3(0, 0.75f, 0), .75f);
         }
