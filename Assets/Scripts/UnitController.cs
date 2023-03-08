@@ -14,7 +14,7 @@ namespace AgentsAndEntities
 
         private void SetNewGoal()
         {
-            _currentGoal = goalManager.GetNewGoal();
+            _currentGoal = goalManager.GetNewGoal(transform);
             movementController.SetNewGoal(_currentGoal, onGoalReached: SetNewGoal);
         }
     }

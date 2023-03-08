@@ -7,7 +7,7 @@ namespace AgentsAndEntities
     public class MovementController: MonoBehaviour
     {
         [Range(0, 10f)]
-        [SerializeField] private float speed = 1f;
+        [SerializeField] private float tweenMovementTime = 1f;
         private UnitGoal _unitGoal;
 
         public void SetNewGoal(UnitGoal unitGoal, Action onGoalReached)
@@ -29,7 +29,7 @@ namespace AgentsAndEntities
 
         private void StartMovementTowardsGoal(Action onGoalReached)
         {
-            transform.DOMove(_unitGoal.GoalPosition, speed).OnComplete(() =>
+            transform.DOMove(_unitGoal.GoalPosition, tweenMovementTime).OnComplete(() =>
             {
                 _unitGoal.IsComplete = true;
                 onGoalReached();
