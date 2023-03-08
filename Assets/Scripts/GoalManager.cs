@@ -10,11 +10,10 @@ namespace AgentsAndEntities
     
         [Range(0, 100)]
         [SerializeField] private float goalZRange;
-        public UnitGoal GetNewGoal(Transform startTransform)
-        {
-            return new UnitGoal(FindValidTargetPosition(startTransform));
-        }
         
+        public Vector3 GetNewGoalVerifiedPosition(Transform startTransform) => 
+            FindValidTargetPosition(startTransform);
+
         private Vector3 FindValidTargetPosition(Transform startPosition)
         {
             GraphNode startNode = AstarPath.active.GetNearest(startPosition.position, NNConstraint.Default).node;

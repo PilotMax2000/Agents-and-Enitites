@@ -1,4 +1,5 @@
 using System;
+using Pathfinding;
 using UnityEngine;
 
 namespace AgentsAndEntities
@@ -8,10 +9,12 @@ namespace AgentsAndEntities
     {
         public bool IsComplete { get; set; }
         public Vector3 GoalPosition { get; }
-    
-        public UnitGoal(Vector3 goalPosition)
+        public Path Path { get; }
+
+        public UnitGoal(Vector3 goalPosition, Path path)
         {
             GoalPosition = goalPosition;
+            Path = path;
             IsComplete = false;
         }
     }

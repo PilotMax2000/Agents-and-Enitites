@@ -1,3 +1,5 @@
+using System;
+using Pathfinding;
 using UnityEngine;
 
 namespace AgentsAndEntities
@@ -7,15 +9,41 @@ namespace AgentsAndEntities
         [SerializeField] private GoalManager goalManager;
         [SerializeField] private MovementController movementController;
     
-        private UnitGoal _currentGoal;
+        private Seeker _seeker;
+        private Vector3 _verifiedNewGoalPosition;
+
+        private void Awake()
+        {
+            _seeker = GetComponent<Seeker>();
+        }
 
         private void Start() => 
             SetNewGoal();
 
         private void SetNewGoal()
         {
-            _currentGoal = goalManager.GetNewGoal(transform);
-            movementController.SetNewGoal(_currentGoal, onGoalReached: SetNewGoal);
+            _verifiedNewGoalPosition = goalManager.GetNewGoalVerifiedPosition(transform);
+            _seeker.StartPath(transform.position, _verifiedNewGoalPosition, OnPathCompleteCreateNewGoal);
         }
+        
+        private void OnPathCompleteCreateNewGoal(Path p)
+        {
+            if (p.error)
+                return;
+
+            movementController.SetNewGoal(new UnitGoal(_verifiedNewGoalPosition, p), onGoalReached: SetNewGoal);
+        }
+
+        // private void SetNewGoalForMovement()
+        // {
+        //     movementController.SetNewGoal(_currentGoal, onGoalReached: SetNewGoal);
+        // }
+        //
+        //
+        // private void SetNewGoalAfterPreparingPath()
+        // {
+        //     _seeker.StartPath(transform.position, _currentGoal.GoalPosition, OnPathCompleteCreateNewGoal);
+        // }
+
     }
 }
