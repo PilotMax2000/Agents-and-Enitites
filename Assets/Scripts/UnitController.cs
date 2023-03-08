@@ -33,17 +33,5 @@ namespace AgentsAndEntities
 
             movementController.SetNewGoal(new UnitGoal(_verifiedNewGoalPosition, p), onGoalReached: SetNewGoal);
         }
-
-        // private void SetNewGoalForMovement()
-        // {
-        //     movementController.SetNewGoal(_currentGoal, onGoalReached: SetNewGoal);
-        // }
-        //
-        //
-        // private void SetNewGoalAfterPreparingPath()
-        // {
-        //     _seeker.StartPath(transform.position, _currentGoal.GoalPosition, OnPathCompleteCreateNewGoal);
-        // }
-
     }
 }

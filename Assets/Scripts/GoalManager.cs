@@ -29,9 +29,7 @@ namespace AgentsAndEntities
                 {
                     GraphNode nearestNode = nearestNodeInfo.node;
                     if (PathUtilities.IsPathPossible(startNode, nearestNode))
-                    {
                         return randomPosition;
-                    }
                 }
             } while (true);
         }
