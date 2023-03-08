@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_TronShader
+  m_Name: Obstacles_TronShader
   m_Shader: {fileID: -6465566751694194690, guid: e8f07dcba96eea04c9f8cc67226aa6e4,
     type: 3}
   m_ValidKeywords: []
@@ -36,15 +36,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_DD43FCA: 0
-    - _LineThickness: 0.937
+    - Vector1_DD43FCA: 0.5
+    - _LineThickness: 0.871
     - _QueueControl: 1
     - _QueueOffset: 0
     m_Colors:
-    - _BackgroundColor: {r: 0.9098039, g: 0.98668826, b: 0.99215686, a: 1}
-    - _GridColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GridColor: {r: 0.5660378, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 20, g: 20, b: 0, a: 0}
+    - _Tiling: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8311323382733689347
 MonoBehaviour:
